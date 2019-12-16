@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <body style="background-color: #e8f3f7">
+            <div class="col=6">
+                <div class="Container" style="width:70%; background-color:#fff; border-radius:15px; padding-left: 50px; padding-right: 50px; padding-top:50px; margin-top: 50px; margin-bottom:50px; padding-bottom:50px">
+                    {% if user.first_name == post.user.first_name %}
+                        <a href="/edit/{{ post.title }}/" style="margin-left:600px; margin-right:300px; align:right"> <img width="50px" height="50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrJK911-wzwcUPqiQk13pgoAc6JyVsyKxyJ8Y9ydJ7YCDVfQjPxw&s">
+                        </a>
+                    {% endif %}
+                    <h1 style="font-weight:800; margin-bottom:0px">{{ post.title }}</h1>
+                    <table>
+                        <tr>
+                            <td><h5 style="color: #737373; font-size:12px"> by {{ post.user.first_name }}</h5></td>
+                            <td><h5 style="margin-left:20px; color: #737373; font-size:12px"> {{ post.date }}</h5></td>
+                            <td><h5 style="margin-left:20px; color: #38b38b">// {{ post.categories }}</h5></td>
+                        </tr>
+                    </table>
+                    <h5 style=" margin-top:30px; margin-bottom:50px; margin-right:50px; max-width:100%;
+                                                                word-wrap:break-word" >{{ post.description | safe }}
+                    </h5>
+                    <table>
+                        <tr>
+                            <td> <button  class="btn btn-primary"
+                                    style="background-color:#38b38b!important; border-color:#38b38b!important " >{{ count }}</button> </td>
+                            <td><form method="POST" action="" id="formOne">
+                            {% csrf_token %}
+                            <button name="form_type" type="hidden" class="btn btn-primary"
+                                     style="background-color: #fff; border-radius: 20px; border-color: #38b38b;
+                                            border-width: 1px; color: #1d8865 ; font-size: 12px; padding-left: 20px; padding-right: 20px; margin-top:15px; margin-left: 10px" value="formOne">Like</button>
+                            </form> </td>
+                        </tr>
+                    </table>
+
+                    <h4 style="font-weight:800; font-size:22px; margin-bottom:20px">Comments</h4>
+
+                    {% for e in norm %}
+                        <div style="border:1px; margin-bottom: 40px; border-color: #000000">
+                            <table>
+                                <tr>
+                                    <td >
+                                        <img height="35px" width="35px" src=http://www.myiconfinder.com/uploads/iconsets/5d8cab7b01ffef290b73909d06d92705.png>
+                                    </td>
+                                    <td >
+                                         <h4 class="card-title" style="font-weight: 800; margin-left: 15px; margin-top: 0px">  {{ e.user.first_name }} </h4>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p class="Card-text" style="margin-left:50px; margin-top: -10px">{{ e.comment }} </p>
+                        </div>
+                    {% endfor %}
+
+                    <div class="card-body" style="margin-left: 10px">
+                        <h4 class="card-title" style="font-weight: 800">Add Comment</h4>
+                        <div class="Card-text">
+                            <form method="POST" action="" id="formTwo">
+                                {% csrf_token %}
+                                <input type="text" name="comment" required="" id="id_comment" style="width: 504px; height: 56px; margin-bottom:10px">
+                               <p><button name="form_type"
+                                        style="background-color: #38b38b; border-color: #38b38b; margin-top: 0px"
+                                        class="btn btn-primary"
+                                               value="formTwo">Add Comment</button></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+    {% endif %}
+{% endblock %}
