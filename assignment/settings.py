@@ -25,8 +25,8 @@ SECRET_KEY = 'g(2gem)p0jol=g(e))7z_f$hjk)44@-@28cm4=sy*15o3ufkbo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = ['notemanager2019.herokuapp.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['notemanager2019.herokuapp.com']
+#ALLOWED_HOSTS = []
 
 
 # Application definition
