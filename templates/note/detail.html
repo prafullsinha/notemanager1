@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     {% if user.is_authenticated %}
-        <body style="background-color: #e8f3f7">
+
+<body style="background-color: #e8f3f7">
+
             <div class="col=6">
                 <div class="Container" style="width:70%; background-color:#fff; border-radius:15px; padding-left: 50px; padding-right: 50px; padding-top:50px; margin-top: 50px; margin-bottom:50px; padding-bottom:50px">
                     {% if user.first_name == post.user.first_name %}
@@ -14,11 +16,20 @@
                             <td><h5 style="color: #737373; font-size:12px"> by {{ post.user.first_name }}</h5></td>
                             <td><h5 style="margin-left:20px; color: #737373; font-size:12px"> {{ post.date }}</h5></td>
                             <td><h5 style="margin-left:20px; color: #38b38b">// {{ post.categories }}</h5></td>
+
                         </tr>
                     </table>
                     <h5 style=" margin-top:30px; margin-bottom:50px; margin-right:50px; max-width:100%;
                                                                 word-wrap:break-word" >{{ post.description | safe }}
                     </h5>
+                    <h4 style="font-weight:500">User Location:</h4>
+
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ post.latitude }},{{ post.longitude }}&zoom=13&size=600x300&maptype=roadmap
+                                    &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+                                    &markers=color:red%7Clabel:C%7C{{ post.latitude }},{{ post.longitude }}
+                                    &key=AIzaSyCZwboOYJ3h6qbHv1QUEcT-SN-yU2TPOlI" width="80%" height="40%" style="margin-left:10%"><br><br>
+
+
                     <table>
                         <tr>
                             <td> <button  class="btn btn-primary"
@@ -67,4 +78,5 @@
             </div>
         </body>
     {% endif %}
+
 {% endblock %}

@@ -9,7 +9,8 @@ class NoteModelForm(forms.ModelForm):
 
     class Meta:
         model = NoteModel
-        fields = ('title', 'description', 'categories')
+        fields = ('title', 'description', 'categories', 'latitude', 'longitude')
+        widgets = {'latitude': forms.HiddenInput(), 'longitude': forms.HiddenInput()}
 
 
 class RegisterForm(UserCreationForm):
@@ -27,6 +28,3 @@ class CommentModelForm(forms.ModelForm):
     class Meta:
         model = CommentModel
         fields = ('comment',)
-
-
-

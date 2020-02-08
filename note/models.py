@@ -10,7 +10,8 @@ class NoteModel(models.Model):
     categories = models.CharField(max_length=15, blank=True)
     date = models.DateField(auto_now_add=True)
     description = RichTextField(blank=True, null=True)
-
+    latitude = models.DecimalField(max_digits=19, decimal_places=16, null=True)
+    longitude = models.DecimalField(max_digits=19, decimal_places=16, null=True)
 
     def __str__(self):
         return self.title

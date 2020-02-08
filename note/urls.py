@@ -1,5 +1,5 @@
 from .views import HomeView, Signup, SearchView, FilterView, Filter1View, PostView, PersonalView, SortView
-from django.urls import path, include
+from django.urls import path
 from django.conf import settings
 from . import views
 from django.conf.urls.static import static

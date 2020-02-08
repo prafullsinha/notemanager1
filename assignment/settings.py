@@ -26,7 +26,7 @@ SECRET_KEY = 'g(2gem)p0jol=g(e))7z_f$hjk)44@-@28cm4=sy*15o3ufkbo'
 DEBUG = True
 
 ALLOWED_HOSTS = ['notemanager2019.herokuapp.com']
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'django_extensions',
     'note',
     'ckeditor',
+    'django_geoip',
 ]
 
 MIDDLEWARE = [
+    'django_geoip.middleware.LocationMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'assignment.urls'
 
@@ -127,8 +130,8 @@ LOGOUT_REDIRECT_URL = 'home'
 PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-
-# Extra lookup directories for collectstatic to find static files
+#
+# # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )

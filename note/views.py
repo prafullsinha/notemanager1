@@ -58,7 +58,7 @@ class PostView(TemplateView):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        profile = NoteModel()
+
         form = NoteModelForm(request.POST)
         if form.is_valid():
             profile1 = form.save(commit=False)
@@ -138,6 +138,7 @@ class Filter1View(ListView):
 def DetailView(request, title, *args, **kwargs):
     post = NoteModel.objects.get(title=title)
     norm = CommentModel.objects.filter(note=post)
+    # morm = MyCustomLocation.objects.filter(name=post)
     form = CommentModelForm(request.POST or None)
     form2 = LikeModel.objects.filter(note=post)
     count = 0
@@ -165,6 +166,7 @@ def DetailView(request, title, *args, **kwargs):
                 form = CommentModelForm()
     template = 'note/detail.html'
     context = {
+        # 'morm': morm,
         'form': form,
         'norm': norm,
         'post': post,

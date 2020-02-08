@@ -2,6 +2,20 @@
 {% block content %}
 <body style="background-color: #e8f3f7">
     {% if user.is_authenticated %}
+        <script>
+            $(document).ready(function(){
+                 $('[data-toggle="popover"]').popover({
+                      //trigger: 'focus',
+                      trigger: 'hover',
+                      html: true,
+                      content: function () {
+                            return '<img class="img-fluid" src="'+$(this).data('img') + '" />';
+                      },
+
+                })
+            });
+        </script>
+
         <h2 align="left" style="font-weight: 800; margin-bottom:45px">All Notes from All Users</h2>
         <table>
             <tr>
@@ -52,6 +66,9 @@
                                         </tr>
                                  </table>
 
+
+
+
                                 <a href="/post/" class="btn btn-primary stretched-link" style="background-color: #38b38b; border-radius: 20px; border-color: #38b38b;
                                         border-width: 1px; margin-bottom: 5px; margin-top:5px" >
                                         <span style="color: #fff ; font-size: 12px">
@@ -74,12 +91,31 @@
                                             <td><h5 style="color: #737373; font-size:12px"> by {{ e.user.first_name }}</h5></td>
                                             <td><h5 style="margin-left:20px; color: #737373; font-size:12px"> {{ e.date }}</h5></td>
                                             <td><h5 style="margin-left:20px; color: #38b38b">// {{ e.categories }}</h5></td>
+
                                         </tr>
                                     </table>
-                                    <a href="/detail/{{ e.title }}/" class="btn btn-primary stretched-link"
-                                       style="background-color: #fff; border-radius: 20px; border-color: #38b38b;
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <a href="/detail/{{ e.title }}/" class="btn btn-primary"
+                                                     style="background-color: #fff; border-radius: 20px; border-color: #38b38b;
                                         border-width: 1px; margin-bottom: 5px; margin-top:5px" >
-                                        <span style="color: #1d8865 ; font-size: 12px">See Note</span></a>
+                                                 <span style="color: #1d8865 ; font-size: 12px">See Note</span></a>
+                                            </td>
+                                            <td>
+                                                <div class="container">
+                                                      <a href="#"  data-toggle="popover" data-placement="left" data-img="https://maps.googleapis.com/maps/api/staticmap?center={{ e.latitude }},{{ e.longitude }}&zoom=13&size=600x300&maptype=roadmap
+                                                                        &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+                                                                        &markers=color:red%7Clabel:C%7C{{ e.latitude }},{{ e.longitude }}
+                                                                        &key=AIzaSyCZwboOYJ3h6qbHv1QUEcT-SN-yU2TPOlI" style="margin-left:120px;background-color: #fff;color: #38b38b;
+                                        margin-bottom: 5px; margin-top:5px">Location
+                                                      </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+
                                 </div>
                             </div>
                         </div>
