@@ -10,5 +10,5 @@ django-crispy-forms==1.8.1
 django-extensions==2.2.5
 django-js-asset==1.2.2
 six==1.13.0
-sqlparse==0.3.0
+sqlparse==0.4.4
 django-geoip==0.5.2.1
